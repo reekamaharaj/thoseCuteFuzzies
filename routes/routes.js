@@ -83,23 +83,28 @@ module.exports = function (app) {
             });
     });
 
-    // app.get("/save", function(req, res) {
-    //     db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true })
-    //     .populate("saved")
-    //     .then(function(dbArticle) {
-    //         res.json(dbArticle);
-    //     })
-    //     .catch(function(err) {
-    //         res.json(err);
-    //     });
-    //     console.log("saved article");
+    app.post("/save", function(req, res) {
+        db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true })
+        .populate("saved")
+        .then(function(dbArticle) {
+            res.json(dbArticle);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+        console.log("saved article");
+    });
+
+    app.delete("/save", function(req, res) {
+        db.Article.deleteOne({ _id: req.params.id }, { saved: false })
+            
+    })
+
+    // app.get("/login", function (req, res) {
+    //     res.render("login", { message: "login" });
     // });
 
-    app.get("/login", function (req, res) {
-        res.render("login", { message: "login" });
-    });
-
-    app.get("/register", function (req, res) {
-        res.render("register", { message: "register" });
-    });
+    // app.get("/register", function (req, res) {
+    //     res.render("register", { message: "register" });
+    // });
 };
