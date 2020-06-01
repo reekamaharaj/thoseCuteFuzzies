@@ -34,7 +34,7 @@ module.exports = function (app) {
         db.Article.find()
             .lean()
             .then(function (data) {
-                res.render("index", { message: "home", article: data, nothing: "You should click the button for articles" });
+                res.render("index", { message: "News Below", article: data, nothing: "You should click the button for articles" });
             })
             .catch(function (err) {
                 res.json(err);
