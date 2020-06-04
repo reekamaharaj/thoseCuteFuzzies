@@ -28,7 +28,7 @@ module.exports = function (app) {
                 });
             });
         });
-        res.send(200);
+        res.render("index", { message: "News Below", article: data});
     });
 
     app.get("/", function (req, res) {
@@ -85,7 +85,7 @@ module.exports = function (app) {
     });
 
     app.put("/articles/:id", function(req, res) {
-        db.Article.update({ _id: req.params.id}, {saved: req.body.saved})
+        db.Article.update({ _id: req.params.id}, {saved: req.body.save})
         .populate("note")
         .then(function(data){
             res.json(data);
