@@ -14,6 +14,7 @@ module.exports = function (app) {
                     .children("a")
                     .children("div")
                     .attr("data-runner-img-sd");
+                result.saved = false;
 
                 db.Article.findOne({ title: result.title }, function ( err, found ) {
                     if (err) { console.log(err); }
@@ -73,7 +74,7 @@ module.exports = function (app) {
     app.post("/articles/:id", function(req, res) {
         db.Note.create(req.body)
             .then(function(dbNote) {
-                return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+                db.Article.findOneAndUpdate({ _id: req.params.id }, { "note": dbNote._id }, { new: true });
             })
             .then(function(dbArticle) {
                 res.json(dbArticle);
@@ -83,22 +84,16 @@ module.exports = function (app) {
             });
     });
 
-    app.post("/save", function(req, res) {
-        db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true })
-        .populate("saved")
-        .then(function(dbArticle) {
-            res.json(dbArticle);
+    app.put("/articles/:id", function(req, res) {
+        db.Article.update({ _id: req.params.id}, {saved: req.body.saved})
+        .populate("note")
+        .then(function(data){
+            res.json(data);
         })
         .catch(function(err) {
             res.json(err);
         });
-        console.log("saved article");
     });
-
-    app.delete("/save", function(req, res) {
-        db.Article.deleteOne({ _id: req.params.id }, { saved: false })
-            
-    })
 
     // app.get("/login", function (req, res) {
     //     res.render("login", { message: "login" });

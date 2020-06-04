@@ -1,18 +1,15 @@
 $(".fa-star").click(function() {
 
     $(this).toggleClass("fas far");
-
-    let _id = {
+    let id = {
         _id: $(this).attr("id")
     }
-
     let state = $(this).attr("data-state");
     if (state === "false"){
         $(this).attr("data-state", "true");
-
-        $.ajax("/favs", {
+        $.ajax("/save", {
             type: "POST",
-            data: _id
+            data: id
         }).then(
             function(res) {
             }
@@ -27,10 +24,9 @@ $(".fa-star").click(function() {
 
 $(".delete").click(function() {
     let deleteId = {
-        deleteId: $(this).attr("id")
+        _id: $(this).attr("id")
     }
-
-    $.ajax("/favs", {
+    $.ajax("/save", {
         type: "DELETE",
         data: deleteId
     }).then(
