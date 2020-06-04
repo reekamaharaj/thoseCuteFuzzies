@@ -1,41 +1,31 @@
 $(".fa-star").click(function() {
-
     $(this).toggleClass("fas far");
-    let id = {
-        _id: $(this).attr("id")
-    }
+    
+    let id = $(this).attr("data-id");
+    console.log(id);
+    
     let state = $(this).attr("data-state");
     if (state === "false"){
         $(this).attr("data-state", "true");
-        $.ajax("/save", {
+        state = "true";
+        console.log("true");
+        $.ajax("/save/" + id, {
             type: "POST",
-            data: id
+            saved: state
         }).then(
-            function(res) {
-            }
-        ).fail(
-            function(err){
-                alert("You need to log in to save as fav");
-                //need to stop the toggle
-            }
-        )
+            function() {
+                // location.reload();
+            });
+    } else {
+        $(this).attr("data-state", "false");
+        state = "false";
+        console.log("false");
+        $.ajax("/save/" + id, {
+            type: "DELETE",
+            saved: state
+        }).then(
+            function() {
+                // location.reload();
+            });
     }
-})
-
-$(".delete").click(function() {
-    let deleteId = {
-        _id: $(this).attr("id")
-    }
-    $.ajax("/save", {
-        type: "DELETE",
-        data: deleteId
-    }).then(
-        function(res){
-            location.reload();
-        }
-    ).fail(
-        function(err){
-            alert("Oops. something broke! Sorry!");
-        }
-    )
-})
+});

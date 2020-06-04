@@ -84,8 +84,8 @@ module.exports = function (app) {
             });
     });
 
-    app.put("/articles/:id", function(req, res) {
-        db.Article.update({ _id: req.params.id}, {saved: req.body.save})
+    app.post("/save/:id", function(req, res) {
+        db.Article.updateOne({ _id: req.params.id}, {saved: req.body.save})
         .populate("note")
         .then(function(data){
             res.json(data);
@@ -95,6 +95,18 @@ module.exports = function (app) {
         });
     });
 
+    app.delete("/save/:id", function(req, res) {
+        db.Article.updateOne({ _id: req.params.id}, {saved: req.body.save})
+        .populate("note")
+        .then(function(data){
+            res.json(data);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+    });
+
+    
     // app.get("/login", function (req, res) {
     //     res.render("login", { message: "login" });
     // });
