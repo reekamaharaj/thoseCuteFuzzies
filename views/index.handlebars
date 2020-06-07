@@ -6,9 +6,11 @@
                     News Below
                 </p>
                 <div class="flex items-center">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        <a href="/scrape">New Articles</a>
-                    </button>
+                    <a href="/scrape">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Check for New Articles
+                        </button>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -22,15 +24,17 @@
                 <p class="">{{title}}</p>
                 {{#if saved}}
                 <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    <a class="btn saved-button" data-toggle="tooltip" data-placement="right" title={{title}}><i class="fas fa-star" data-state="true" data-id={{_id}}></i></a></button>
-                
+                    <a class="btn saved-button" data-toggle="tooltip" data-placement="right" title={{title}}><i
+                            class="fas fa-star" data-state="true" data-id={{_id}}></i></a></button>
+
                 {{else}}
                 <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    <a class="btn add-to-saved-button" data-toggle="tooltip" data-placement="right" title="Add to Saved"><i class="far fa-star" data-state="false" data-id={{_id}}></i></a></button>
+                    <a class="btn add-to-saved-button" data-toggle="tooltip" data-placement="right"
+                        title="Add to Saved"><i class="far fa-star" data-state="false" data-id={{_id}}></i></a></button>
                 {{/if}}
-                    {{#if note}}
-                    <p class="">{{note}}</p>
-                    {{/if}}
+                {{#if note}}
+                <p class="">{{note}}</p>
+                {{/if}}
             </div>
         </div>
         {{/each}}

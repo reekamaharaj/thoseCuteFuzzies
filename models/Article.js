@@ -5,27 +5,27 @@ const Schema = mongoose.Schema;
 const ArticleSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
     },
 
     link: {
         type: String,
-        required: true
+        required: true,
     },
 
     img: {
-        type: String
+        type: String,
     },
 
     saved: {
         type: Boolean,
-        default: false
+        default: false,
     },
 
     note: {
         type: Schema.Types.ObjectId,
-        ref: "Note"
-    }
+        ref: "Note",
+    },
 });
 
 const Article = mongoose.model("Article", ArticleSchema);
