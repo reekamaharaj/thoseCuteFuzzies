@@ -66,6 +66,16 @@ module.exports = function (app) {
             });
         }
     );
+
+    app.post("/saved/:id", function (req, res) {
+        db.Article.findOneAndUpdate( { saved: req.saved })
+            .then(function (dbArticle) {
+                res.json(dbArticle);
+            })
+            .catch(function (err) {
+                res.json(err);
+        });
+    });
 };
 
 // app.get("/articles", function (req, res) {
