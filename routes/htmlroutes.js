@@ -2,7 +2,7 @@ const db = require("../models");
 
 module.exports = function (app) {
     app.get("/", function (req, res) {
-        db.Article.find()
+        db.Article.find({})
             .lean()
             .then(function (data) {
                 res.render("index", {

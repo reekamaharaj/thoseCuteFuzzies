@@ -9,8 +9,8 @@ $(".fa-star").click(function () {
         $(this).attr("data-state", "true");
         state = "true";
         $.ajax({
-            method: "POST",
-            url: "/saved/" + id,
+            method: "PUT",
+            url: "/articles/" + id,
             data: {
                 saved: true,
             },
@@ -22,8 +22,8 @@ $(".fa-star").click(function () {
         $(this).attr("data-state", "false");
         state = "false";
         $.ajax({
-            method: "POST",
-            url: "/saved/" + id,
+            method: "PUT",
+            url: "/articles/" + id,
             data: {
                 saved: false,
             },
@@ -34,17 +34,29 @@ $(".fa-star").click(function () {
     }
 });
 
-// $(".notes").click(function () {
-//     let id = $(this).attr("data-id");
+$(".addNote").click(function () {
+    let id = $(this).attr("data-id");
 
-//     $.ajax({
-//         method: "POST",
-//         url: "/articles/" + id,
-//         data: {
-//             title: "Add this for testing",
-//             body: "Testing if this works",
-//         },
-//     }).then(function (data) {
-//         console.log(data);
-//     });
-// });
+    $.ajax({
+        method: "POST",
+        url: "/articles/" + id
+        data: {
+            title: "Add this for testing",
+            body: "Testing if this works",
+        }
+    }).then(function (data) {
+        console.log(data);
+    });
+});
+
+$(".note").click(function () {
+    let id = $(this).attr("data-id");
+
+    $.ajax({
+        method: "GET",
+        url: "/articles/" + id
+    }).then(function (data) {
+        
+        console.log(data);
+    });
+});

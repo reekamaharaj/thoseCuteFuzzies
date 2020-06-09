@@ -38,6 +38,16 @@ module.exports = function (app) {
         });
     });
 
+    app.get("/articles", function (req, res) {
+        db.Article.find({})
+            .then(function (dbArticle) {
+                res.json(dbArticle);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
     app.get("/articles/:id", function (req, res) {
         db.Article.findOne({ _id: req.parms.id })
             .populate("note")
@@ -64,48 +74,16 @@ module.exports = function (app) {
             .catch(function (err) {
                 res.json(err);
             });
-        }
-    );
+    });
 
-    app.post("/saved/:id", function (req, res) {
-        db.Article.findOneAndUpdate( { saved: req.saved })
-            .then(function (dbArticle) {
-                res.json(dbArticle);
+    app.put("/articles/:id", function (req, res) {
+        db.Article.update({ _id: req.params.id }, { saved: req.body.saved })
+            .populate("note")
+            .then(function (data) {
+                res.json(data);
             })
             .catch(function (err) {
                 res.json(err);
-        });
+            });
     });
 };
-
-// app.get("/articles", function (req, res) {
-//     db.Article.find({})
-//         .then(function (dbArticle) {
-//             res.json(dbArticle);
-//         })
-//         .catch(function (err) {
-//             res.json(err);
-//         });
-// });
-//
-// app.post("/save/:id", function (req, res) {
-//     db.Article.updateOne({ _id: req.params.id }, { saved: req.body.save })
-//         .populate("note")
-//         .then(function (data) {
-//             res.json(data);
-//         })
-//         .catch(function (err) {
-//             res.json(err);
-//         });
-// });
-
-// app.delete("/save/:id", function (req, res) {
-//     db.Article.updateOne({ _id: req.params.id }, { saved: req.body.save })
-//         .populate("note")
-//         .then(function (data) {
-//             res.json(data);
-//         })
-//         .catch(function (err) {
-//             res.json(err);
-//         });
-// });
