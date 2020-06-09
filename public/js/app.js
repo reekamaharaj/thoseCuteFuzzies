@@ -52,12 +52,29 @@ $("#saveNote").click(function () {
     });
     $("#titleInput").val("");
     $("#bodyInput").val("");
+    $(".title").val("");
 });
 
-var modal = document.querySelector(".modal");
-var modalbtn = document.querySelector(".modalbtn");
-var closeButton = document.querySelector(".close-button");
+$(".modalbtn").click(function(){
+    let id = $(this).attr("data-id");
+    console.log(id);
+    $.ajax({
+        method: "GET",
+        url: "/articles/" + id,
 
+    }).then(function (data) {
+        console.log(data);
+        $(".title").text(data.title)
+        $(".save").attr("data-id", data._id);
+    })
+    toggleModal();
+});
+
+$(".close-button").click(function(){
+    toggleModal();
+});
+
+let modal = document.querySelector(".modal");
 function toggleModal() {
     $("#id").empty();
     modal.classList.toggle("show-modal");
@@ -68,7 +85,3 @@ function windowOnClick(event) {
         toggleModal();
     }
 }
-
-modalbtn.addEventListener("click", toggleModal);
-closeButton.addEventListener("click", toggleModal);
-window.addEventListener("click", windowOnClick);
