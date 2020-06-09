@@ -2,6 +2,11 @@
 <div class="modal">
     <div class="modal-content">
         <span class="close-button">×</span>
-        <h1>Hello, I am a modal!</h1>
+            <div id="note">
+                <h1>{{title}}</h1>
+                <input id="titleInput" name="title">
+                <textarea id="bodyInput" name="body"></textarea>
+                <button data-id={{_id}} id="saveNote">Save Note</button>
+        </div>
     </div>
 </div>

@@ -34,11 +34,32 @@ $(".fa-star").click(function () {
     }
 });
 
+$("#saveNote").click(function () {
+    let id = $(this).attr("data-id");
+    console.log(id);
+
+    $.ajax({
+        method: "POST",
+        url: "/articles/" + id,
+        data: {
+            title: $("#titleInput").val(),
+            body: $("#bodyInput").val()
+        }
+    }).then(function () {
+        $(".modal").empty();
+        console.log("note saved");
+        location.reload();
+    });
+    $("#titleInput").val("");
+    $("#bodyInput").val("");
+});
+
 var modal = document.querySelector(".modal");
 var modalbtn = document.querySelector(".modalbtn");
 var closeButton = document.querySelector(".close-button");
 
 function toggleModal() {
+    $("#id").empty();
     modal.classList.toggle("show-modal");
 }
 
@@ -51,46 +72,3 @@ function windowOnClick(event) {
 modalbtn.addEventListener("click", toggleModal);
 closeButton.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
-
-
-
-
-
-
-// $(".note").click(function () {
-//     console.log("clicked");
-//     let id = $(this).attr("id");
-//     var modal = document.querySelector(".modal");
-//         var note = document.querySelector(".note");
-//         var closeButton = document.querySelector(".close-button");
-
-//         function toggleModal() {
-//             modal.classList.toggle("show-modal");
-//         }
-
-//         function windowOnClick(event) {
-//             if (event.target === modal) {
-//                 toggleModal();
-//             }
-//         }
-
-//         note.addEventListener("click", toggleModal);
-//         closeButton.addEventListener("click", toggleModal);
-//         window.addEventListener("click", windowOnClick);
-    
-// });
-
-// $.ajax({
-//     method: "GET",
-//     url: "/articles/" + id,
-// }).then(function (data) {
-
-//     console.log(data);
-
-//     if (data.note) {
-//         console.log("There is a note");
-        
-//     } else {
-//         console.log("No notes");
-//     }
-// });
