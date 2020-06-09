@@ -16,21 +16,12 @@
             <div class="pt-3 flex items-center justify-between">
                 <p class="">{{title}}</p>
             </div>
-            {{#if note}}
-            <div class="pt-3 flex items-center justify-between">
-                <p class="">There is a note saved</p>
-            </div>
-            {{/if}}
 
             <div class="pt-3 flex items-center justify-between">
                 <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    <a class="btn saved-button" data-toggle="tooltip" data-placement="right" title={{title}}><i
-                            class="fas fa-star" data-state="true" data-id={{_id}}></i></a></button>
-                <button class="notes bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-id={{_id}}> Notes
-                </button>
+                    <i class="fas fa-star" data-state="true" data-id={{_id}}></i></button>
+                <button type="button" class="note bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-id={{_id}}> View/Add Notes </button>
             </div>
-            
-
         </div>
         {{/each}}
         {{else}}

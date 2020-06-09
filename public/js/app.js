@@ -34,30 +34,63 @@ $(".fa-star").click(function () {
     }
 });
 
-$(".addNote").click(function () {
-    let id = $(this).attr("data-id");
+var modal = document.querySelector(".modal");
+var modalbtn = document.querySelector(".modalbtn");
+var closeButton = document.querySelector(".close-button");
 
-    $.ajax({
-        method: "POST",
-        url: "/articles/" + id,
-        data: {
-            title: "Add this for testing",
-            body: "Testing if this works",
-        }
-    }).then(function (data) {
-        console.log(data);
-    });
-});
+function toggleModal() {
+    modal.classList.toggle("show-modal");
+}
+
+function windowOnClick(event) {
+    if (event.target === modal) {
+        toggleModal();
+    }
+}
+
+modalbtn.addEventListener("click", toggleModal);
+closeButton.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
+
+
+
+
+
 
 // $(".note").click(function () {
-//     let id = $(this).attr("data-id");
-//     console.log(id);
+//     console.log("clicked");
+//     let id = $(this).attr("id");
+//     var modal = document.querySelector(".modal");
+//         var note = document.querySelector(".note");
+//         var closeButton = document.querySelector(".close-button");
 
-//     $.ajax({
-//         method: "GET",
-//         url: "/articles/" + id
-//     }).then(function (data) {
+//         function toggleModal() {
+//             modal.classList.toggle("show-modal");
+//         }
+
+//         function windowOnClick(event) {
+//             if (event.target === modal) {
+//                 toggleModal();
+//             }
+//         }
+
+//         note.addEventListener("click", toggleModal);
+//         closeButton.addEventListener("click", toggleModal);
+//         window.addEventListener("click", windowOnClick);
+    
+// });
+
+// $.ajax({
+//     method: "GET",
+//     url: "/articles/" + id,
+// }).then(function (data) {
+
+//     console.log(data);
+
+//     if (data.note) {
+//         console.log("There is a note");
         
-//         console.log(data);
-//     });
+//     } else {
+//         console.log("No notes");
+//     }
 // });
