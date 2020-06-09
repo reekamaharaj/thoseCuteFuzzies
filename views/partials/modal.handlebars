@@ -1,12 +1,31 @@
-<button class="modalbtn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id={{_id}}> View/Add Note </button>
+<button class="modalbtn bg-blue-500 hover:bg-blue-700 text-white text-sm py-2 px-4 rounded" id={{_id}}> View/Add Note
+</button>
 <div class="modal">
     <div class="modal-content">
         <span class="close-button">×</span>
-            <div id="note">
-                <h1>{{title}}</h1>
-                <input id="titleInput" name="title">
-                <textarea id="bodyInput" name="body"></textarea>
-                <button data-id={{_id}} id="saveNote">Save Note</button>
+        <div id="note" class="mx-4 card bg-white max-w-md p-10 md:rounded-lg my-2 mx-auto">
+            <div class="title">
+                <h1 class="font-bold text-center">{{title}}</h1>
+            </div>
+            <div class="form mt-4">
+                <div class="flex flex-col text-sm">
+                    <label for="title" class="font-bold mb-2">Title</label>
+                    <input id="titleInput" name="title"
+                        class=" appearance-none border border-gray-200 p-2 focus:outline-none focus:border-gray-500"
+                        type="text" placeholder="Enter a title">
+                </div>
+                <div class="text-sm flex flex-col">
+                    <label for="note" class="font-bold mt-4 mb-2">Leave a Note</label>
+                    <textarea id="bodyInput" name="body"
+                        class=" appearance-none w-full border border-gray-200 p-2 h-40 focus:outline-none focus:border-gray-500"
+                        placeholder="Leave a note!"></textarea>
+                </div>
+            </div>
+            <div class="submit">
+                <button type="submit"
+                    class=" w-full bg-blue-500 shadow-lg text-white px-4 py-2 hover:bg-blue-700 mt-8 text-center font-semibold focus:outline-none rounded"
+                    data-id={{_id}} id="saveNote">Save Note</button>
+            </div>
         </div>
     </div>
 </div>

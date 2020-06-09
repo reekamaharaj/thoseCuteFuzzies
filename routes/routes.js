@@ -64,7 +64,7 @@ module.exports = function (app) {
             .then(function (dbNote) {
                 return db.Article.findOneAndUpdate(
                     { _id: req.params.id },
-                    { note: dbNote._id },
+                    {$push: { note: dbNote._id }},
                     { new: true }
                 );
             })
