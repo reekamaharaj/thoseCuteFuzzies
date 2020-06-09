@@ -23,8 +23,9 @@
             {{/if}}
 
             <div class="pt-3 flex items-center justify-between">
-                <button class="delete bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-id={{_id}}> Delete
-                </button>
+                <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <a class="btn saved-button" data-toggle="tooltip" data-placement="right" title={{title}}><i
+                            class="fas fa-star" data-state="true" data-id={{_id}}></i></a></button>
                 <button class="notes bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-id={{_id}}> Notes
                 </button>
             </div>

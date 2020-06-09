@@ -77,7 +77,7 @@ module.exports = function (app) {
     });
 
     app.put("/articles/:id", function (req, res) {
-        db.Article.update({ _id: req.params.id }, { saved: req.body.saved })
+        db.Article.updateOne({ _id: req.params.id }, { saved: req.body.saved })
             .populate("note")
             .then(function (data) {
                 res.json(data);

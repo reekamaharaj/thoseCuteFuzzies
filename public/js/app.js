@@ -14,8 +14,8 @@ $(".fa-star").click(function () {
             data: {
                 saved: true,
             },
-        }).then(function (data) {
-            console.log(data);
+        }).then(function () {
+            location.reload();
         });
         console.log("true");
     } else {
@@ -27,8 +27,8 @@ $(".fa-star").click(function () {
             data: {
                 saved: false,
             },
-        }).then(function (data) {
-            console.log(data);
+        }).then(function () {
+            location.reload();
         });
         console.log("false");
     }
@@ -39,7 +39,7 @@ $(".addNote").click(function () {
 
     $.ajax({
         method: "POST",
-        url: "/articles/" + id
+        url: "/articles/" + id,
         data: {
             title: "Add this for testing",
             body: "Testing if this works",
@@ -49,14 +49,15 @@ $(".addNote").click(function () {
     });
 });
 
-$(".note").click(function () {
-    let id = $(this).attr("data-id");
+// $(".note").click(function () {
+//     let id = $(this).attr("data-id");
+//     console.log(id);
 
-    $.ajax({
-        method: "GET",
-        url: "/articles/" + id
-    }).then(function (data) {
+//     $.ajax({
+//         method: "GET",
+//         url: "/articles/" + id
+//     }).then(function (data) {
         
-        console.log(data);
-    });
-});
+//         console.log(data);
+//     });
+// });
