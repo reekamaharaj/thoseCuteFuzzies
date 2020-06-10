@@ -86,6 +86,7 @@ $(".close-button").click(function(){
 let modal = document.querySelector(".modal");
 function toggleModal() {
     $("#id").empty();
+    $(".notes").empty();
     modal.classList.toggle("show-modal");
 }
 
