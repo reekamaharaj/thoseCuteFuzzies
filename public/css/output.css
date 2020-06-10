@@ -17878,6 +17878,65 @@ video {
   transition-delay: 1000ms;
 }
 
+.tab-content {
+  max-height: 0;
+  transition: max-height .35s;
+}
+
+.tab input:checked~.tab-content {
+  max-height: 100vh;
+}
+
+.tab input:checked+label {
+  font-weight: bold;
+  padding: 1.25rem;
+  border-left-width: 2px;
+  border-color: darkblue;
+  background-color: #f8fafc;
+  color: darkblue;
+}
+
+.tab label::after {
+  float: right;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5;
+  font-size: 1.25rem;
+  text-align: center;
+  transition: all .35s;
+}
+
+.tab input[type=checkbox]+label::after {
+  content: "+";
+  font-weight: bold;
+  border-width: 1px;
+  border-radius: 9999px;
+  border-color: #b8c2cc;
+}
+
+.tab input[type=radio]+label::after {
+  content: "\25BE";
+  font-weight: bold;
+  border-width: 1px;
+  border-radius: 9999px;
+  border-color: #b8c2cc;
+}
+
+.tab input[type=checkbox]:checked+label::after {
+  transform: rotate(315deg);
+  background-color: darkblue;
+  color: #f8fafc;
+}
+
+.tab input[type=radio]:checked+label::after {
+  transform: rotateX(180deg);
+  background-color: darkblue;
+  color: #f8fafc;
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;

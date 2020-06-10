@@ -2,7 +2,6 @@ $(".fa-star").click(function () {
     $(this).toggleClass("fas far");
 
     let id = $(this).attr("data-id");
-    console.log(id);
 
     let state = $(this).attr("data-state");
     if (state === "false") {
@@ -17,7 +16,7 @@ $(".fa-star").click(function () {
         }).then(function () {
             location.reload();
         });
-        console.log("true");
+
     } else {
         $(this).attr("data-state", "false");
         state = "false";
@@ -30,13 +29,12 @@ $(".fa-star").click(function () {
         }).then(function () {
             location.reload();
         });
-        console.log("false");
+
     }
 });
 
 $("#saveNote").click(function () {
     let id = $(this).attr("data-id");
-    console.log(id);
 
     $.ajax({
         method: "POST",
@@ -47,7 +45,7 @@ $("#saveNote").click(function () {
         }
     }).then(function () {
         $(".modal").empty();
-        console.log("note saved");
+
         location.reload();
     });
     $("#titleInput").val("");
@@ -57,13 +55,23 @@ $("#saveNote").click(function () {
 
 $(".modalbtn").click(function(){
     let id = $(this).attr("data-id");
-    console.log(id);
     $.ajax({
         method: "GET",
         url: "/articles/" + id,
 
     }).then(function (data) {
-        console.log(data);
+        if (data){
+            let title = `<p>Notes</p>`;
+            $(".note").append(title);
+
+            for (let i =0; i < data.note.length; i++){
+                let note = `<div class="shadow-md"> <div class="tab w-full overflow-hidden border-t"> <input class="absolute opacity-0" id="tab-single-${[i]}" type="radio" name="tabs2"> <label class="block p-5 leading-normal cursor-pointer text-sm" for="tab-single-${[i]}">${data.note[i].title}</label> <div class="tab-content overflow-hidden border-l-2 bg-gray-100 border-blue-500 leading-normal text-xs"> <p class="p-2">${data.note[i].body}</p> </div> </div> </div>`;
+                $(".notes").append(note);
+            }
+        }
+        else {
+            $(".notes").append("There are no notes! You should add something.");
+        }
         $(".title").text(data.title)
         $(".save").attr("data-id", data._id);
     })
@@ -73,6 +81,7 @@ $(".modalbtn").click(function(){
 $(".close-button").click(function(){
     toggleModal();
 });
+
 
 let modal = document.querySelector(".modal");
 function toggleModal() {
@@ -84,4 +93,18 @@ function windowOnClick(event) {
     if (event.target === modal) {
         toggleModal();
     }
+}
+
+var myRadios = document.getElementsByName('tabs2');
+var setCheck;
+var x = 0;
+for (x = 0; x < myRadios.length; x++) {
+    myRadios[x].onclick = function () {
+        if (setCheck != this) {
+            setCheck = this;
+        } else {
+            this.checked = false;
+            setCheck = null;
+        }
+    };
 }

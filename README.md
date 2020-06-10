@@ -28,3 +28,7 @@ Created by one developer
 
 ## App Future
 This app is one part of a larger app for cat rescues. App is still in development.
+
+# Front End References Used
+[Tailwind Accordian]https://www.tailwindtoolbox.com/components/accordion
+[Modal Popup]https://sabe.io/tutorials/how-to-create-modal-popup-box
