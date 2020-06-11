@@ -68,6 +68,7 @@ $(".modalbtn").click(function(){
                 let note = `<div class="shadow-md"> <div class="tab w-full overflow-hidden border-t"> <input class="absolute opacity-0" id="tab-single-${[i]}" type="radio" name="tabs2"> <label class="block p-5 leading-normal cursor-pointer text-sm" for="tab-single-${[i]}">${data.note[i].title}</label> <div class="tab-content overflow-hidden border-l-2 bg-gray-100 border-blue-500 leading-normal text-xs"> <p class="p-2">${data.note[i].body}</p> </div> </div> </div>`;
                 $(".notes").append(note);
             }
+            dropDown();
         }
         else {
             $(".notes").append("There are no notes! You should add something.");
@@ -96,16 +97,18 @@ function windowOnClick(event) {
     }
 }
 
-var myRadios = document.getElementsByName('tabs2');
-var setCheck;
-var x = 0;
-for (x = 0; x < myRadios.length; x++) {
-    myRadios[x].onclick = function () {
-        if (setCheck != this) {
-            setCheck = this;
-        } else {
-            this.checked = false;
-            setCheck = null;
-        }
-    };
+function dropDown(){
+    var myRadios = document.getElementsByName('tabs2');
+    var setCheck;
+    var x = 0;
+    for (x = 0; x < myRadios.length; x++) {
+        myRadios[x].onclick = function () {
+            if (setCheck != this) {
+                setCheck = this;
+            } else {
+                this.checked = false;
+                setCheck = null;
+            }
+        };
+    }
 }
